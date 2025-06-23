@@ -2,6 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>NSCameraUsageDescription</key>
+    <string>We need access to your camera.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>We need access to your photo library.</string>
+    <key>GIDClientID</key>
+    <string>1005236283627-r8bu4ptpvctmo9d60898hkgnkhusfqd8.apps.googleusercontent.com</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.1005236283627-r8bu4ptpvctmo9d60898hkgnkhusfqd8</string>
+			</array>
+		</dict>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -23,3 +38,4 @@
 	</dict>
 </dict>
 </plist>
+

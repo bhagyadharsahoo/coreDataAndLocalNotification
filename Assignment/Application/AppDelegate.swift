@@ -7,13 +7,18 @@
 
 import UIKit
 import CoreData
+import GoogleSignIn
+import Firebase
+import UserNotifications
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+        UNUserNotificationCenter.current().delegate = self
+        requestNotificationPermission()
         // Override point for customization after application launch.
         return true
     }
@@ -76,6 +81,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+
+    func requestNotificationPermission() {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                DispatchQueue.main.async {
+                if let error = error {
+                    CoreDataManager.shared.notificationsEnabled = false
+                    print("Permission error: \(error)")
+                } else {
+                    print("Permission granted: \(granted)")
+                    CoreDataManager.shared.notificationsEnabled = granted
+                }
+            }
+        }
+       
+    }
 
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .sound])
+    }
+}
