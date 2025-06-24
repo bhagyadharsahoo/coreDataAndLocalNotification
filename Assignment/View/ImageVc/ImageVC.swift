@@ -16,7 +16,7 @@ final class ImageVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         setupUI()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }

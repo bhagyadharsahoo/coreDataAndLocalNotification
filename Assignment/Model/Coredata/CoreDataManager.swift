@@ -15,12 +15,22 @@ final class CoreDataManager {
     var notificationsEnabled = true
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    func saveItem(id: String, name: String, data: DataClass) {
+    func saveItemN(data: PhoneDataModel) {
         let items = fetchItems()
         if !items.isEmpty {
             return
         }
+        
+        for item in data {
+            CoreDataManager.shared.saveItem(
+                id: item.id ?? " ",
+                name: item.name ?? " ",
+                data: item.data ?? DataClass()
+            )
+        }
+    }
+    
+    func saveItem(id: String, name: String, data: DataClass) {
         
         let item = PhoneData(context: context)
         item.id = id

@@ -33,13 +33,15 @@ final class DataListViewModel {
                 let rawObjects = try decoder.decode(PhoneDataModel.self, from: data)
 
                 DispatchQueue.main.async {
-                    for item in rawObjects {
-                        CoreDataManager.shared.saveItem(
-                            id: item.id ?? " ",
-                            name: item.name ?? " ",
-                            data: item.data ?? DataClass()
-                        )
-                    }
+                    CoreDataManager.shared.saveItemN(data: rawObjects)
+//                    
+//                    for item in rawObjects {
+//                        CoreDataManager.shared.saveItem(
+//                            id: item.id ?? " ",
+//                            name: item.name ?? " ",
+//                            data: item.data ?? DataClass()
+//                        )
+//                    }
                     self.items = CoreDataManager.shared.fetchItems()
                     self.onDataUpdate?()
                 }
